@@ -5,6 +5,7 @@ ACTION=$1
 CLIENT=$2
 HOST=$(hostname)
 CLIENTDIR="/opt/openvpn/clients"
+ISSUING_COMPANY="your_company_name"
 
 if [ $# -lt 1 ] 
 then 
@@ -79,7 +80,7 @@ then
     newClient "${CLIENT}" || { echo "error generating user VPN profile"; exit 1; }
 
     ### setup Google Authenticator
-    google-authenticator -t -d -f -r 3 -R 30 -W -C -s "/opt/openvpn/google-auth/${CLIENT}" || { echo "error generating QR code"; exit 1; }
+    google-authenticator -t -d -f -r 3 -R 30 -i "${CLIENT}" -l "${ISSUING_COMPANY}" -W -C -s "/opt/openvpn/google-auth/${CLIENT}" || { echo "error generating QR code"; exit 1; }
     secret=$(head -n 1 "/opt/openvpn/google-auth/${CLIENT}")
     qrencode -t PNG -o "/opt/openvpn/google-auth/$CLIENT.png" "otpauth://totp/${CLIENT}@${HOST}?secret=${secret}&issuer=openvpn" || { echo "error generating PNG"; exit 1; }
         
