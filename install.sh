@@ -241,6 +241,12 @@ status /var/log/openvpn/status.log \n
 duplicate-cn \n
 # Client renegotiation every 10h \n
 reneg-sec 36000 \n
+management localhost 7505 \n
+plugin /usr/lib64/openvpn/plugins/openvpn-plugin-auth-pam.so \"openvpn login USERNAME password PASSWORD pin OTP\" \n
+push \"dhcp-option DNS 208.67.222.222\" \n
+push \"dhcp-option DNS 208.67.220.220\" \n
+# !!! Web servers \n
+push \"route 172.16.0.0 255.255.128.0\" \n
 verb 3" >>/etc/openvpn/server.conf
 
     # remove empty lines
@@ -339,6 +345,7 @@ ignore-unknown-option block-outside-dns \n
 remote-cert-tls server \n
 auth-user-pass \n
 static-challenge \"Enter 2FA Authenticator code:\" 1 \n
+# Sometimes it doesnt work on Windows and needs to be removed \n
 dhcp-option DOMAIN-ROUTE . \n
 pull-filter ignore redirect-gateway \n
 # Enable change of clients public IP address \n
