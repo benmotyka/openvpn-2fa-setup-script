@@ -239,6 +239,8 @@ ecdh-curve $DH_CURVE \n
 client-config-dir /etc/openvpn/ccd \n
 status /var/log/openvpn/status.log \n
 duplicate-cn \n
+# Client renegotiation every 10h \n
+reneg-sec 36000 \n
 verb 3" >>/etc/openvpn/server.conf
 
     # remove empty lines
@@ -339,6 +341,9 @@ auth-user-pass \n
 static-challenge \"Enter 2FA Authenticator code:\" 1 \n
 dhcp-option DOMAIN-ROUTE . \n
 pull-filter ignore redirect-gateway \n
+# Enable change of clients public IP address \n
+# redirect-gateway def1 \n
+reneg-sec 36000 \n
 verb 3" >>/etc/openvpn/client-template.txt
 
 sed -i '/^$/d' /etc/openvpn/client-template.txt
