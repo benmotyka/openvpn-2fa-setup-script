@@ -67,16 +67,12 @@ Based on the following repository: https://github.com/perfecto25/openvpn_2fa
 
 ## Common problems
 
-<ul>
-    <li>
-        **Issue** Can't import .ovpn file because of unknown dhcp-option
-    <br/>
-        **Resolution**  Remove `dhcp-option DOMAIN-ROUTE .` line from client .ovpn file
-    </li>
-    <li>
-        **Issue** Can't connect to server because of `TEST ROUTES: 0/0 succeeded len=-1 ret=0 a=0 u/d=down`, `Initialization Sequence Completed With Errors ( see http://openvpn.net/faq.html#dhcpclientserv )` connection logs
-    <br/>
-        **Resolution**  Run below commands in cmd.exe as admin:
+**Issue** Can't import .ovpn file because of unknown dhcp-option
+**Resolution**  Remove `dhcp-option DOMAIN-ROUTE .` line from client .ovpn file
+<br/>
+
+**Issue** Can't connect to server because of `TEST ROUTES: 0/0 succeeded len=-1 ret=0 a=0 u/d=down`, `Initialization Sequence Completed With Errors ( see http://openvpn.net/faq.html#dhcpclientserv )` connection logs
+**Resolution**  Run below commands in cmd.exe as admin:
 ```
 netsh winsock reset catalog
 netsh int ipv4 reset reset.log
@@ -87,8 +83,7 @@ Add below line to client .ovpn file:
 ```
 ip-win32 netsh
 ```
-    </li>
-</ul>
+<br/>
 
 ## Contributing
 
