@@ -50,9 +50,10 @@ Based on the following repository: https://github.com/perfecto25/openvpn_2fa
 
 ### Usage
 
-1. Clone this repo
+1. Clone this repo and enter project
    ```sh
    git clone https://github.com/benmotyka/openvpn-2fa-setup-script.git
+   cd openvpn-2fa-setup-script/
    ```
 2. Install OpenVPN server:
    ```
